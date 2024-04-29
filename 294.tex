@@ -1,0 +1,66 @@
+\documentclass[14pt,a4paper]{article}
+\usepackage[top=2cm,bottom=2cm,inner=2.5cm,outer=2cm]{geometry}
+\usepackage[utf8]{vietnam}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{indentfirst}
+\renewcommand{\baselinestretch}{1.2}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{1cm}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0pt}{30pt}
+\titleformat*{\section}{\fontsize{16pt}{0pt}\selectfont \bfseries \centering}
+\titlespacing*{\subsection}{0pt}{10pt}{30pt}
+\titleformat*{\subsection}{\fontsize{14pt}{0pt}\selectfont \bfseries}
+\titlespacing*{\subsubsection}{0pt}{10pt}{30pt}
+\titleformat*{\subsubsection}{\fontsize{14pt}{0pt}\selectfont \bfseries\itshape}
+\titlespacing*{\paragraph}{0pt}{0pt}{30pt}
+\titleformat*{\paragraph}{\fontsize{16pt}{0pt}\selectfont \itshape}
+\begin{document}
+\cleardoublepage
+\thispagestyle{empty}
+\begin{titlepage}
+\begin{tikzpicture}[overlay,remember picture]
+\draw[line width=3pt]
+($ (current page.north west)+(3.0cm,-2.0cm)$)
+rectangle
+($ (current page.south east)+(-2.0cm,2.5cm)$);
+\draw[line width=0.5pt]
+($ (current page.north west)+(3.1cm,-2.1cm)$)
+rectangle
+($ (current page.south east)+(-2.1cm,2.6cm)$);
+\end{tikzpicture}
+\begin{center}
+	\fontsize{16pt}{0pt}\selectfont ĐẠI HỌC QUỐC GIA TP-HCM\\
+	\vspace{6pt}\textbf{\fontsize{16pt}{0pt}\selectfont TRƯỜNG ĐẠI HỌC BÁCH KHOA TP-HCM\\}
+	\vspace{0.3cm}
+	\begin{figure}[H]
+		\centering
+\includegraphics[width=7.5cm,height=5.0cm]{C:/Users/DUONG_THAI/Downloads/01_logobachkhoasang}
+	\end{figure}
+	\vspace{0.3cm}
+	\textbf{\fontsize{20pt}{0pt}\selectfont BÁO CÁO BÀI TẬP LỚN\\}
+	\vspace{0.2cm}
+	\textbf{\fontsize{18pt}{0pt}\selectfont MÔN PHƯƠNG PHÁP TÍNH\\}
+	\vspace{0.2cm}
+\fontsize{20pt}{0pt}\selectfont Đề tài:\\
+
+	\fontsize{22pt}{0pt}\selectfont Phương pháp Simpson để tính diện tích \\
+	\fontsize{22pt}{0pt}\selectfont của một miền phẳng\\
+	\vspace{0.5cm}
+	\textbf{\fontsize{20pt}{0pt}\selectfont Giảng viên hướng dẫn: Võ Trần An\\}
+	\vspace{0.2cm}
+	\fontsize{20pt}{0pt}\selectfont Lớp: L13, Nhóm 2\\
+	\vspace{0.5cm}
+	\begin{tabular}{l l}
+		\fontsize{16pt}{0pt}\selectfont Danh Sách Thành Viên \vspace{6pt}\\
+		\fontsize{16pt}{0pt}\selectfont Sinh viên thực hiện & \fontsize{16pt}{0pt}\selectfont Mã số sinh viên\\
+	\end{tabular}
+\end{center}
+\end{titlepage}
+\cleardoublepage
+\section*{LỜI NÓI ĐẦU}
+\end{document}
