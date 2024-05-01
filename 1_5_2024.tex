@@ -1,0 +1,118 @@
+\documentclass[14pt,a4paper]{article}
+\usepackage[top=2cm,bottom=2cm,inner=2.5cm,outer=2cm]{geometry}
+\usepackage[utf8]{vietnam}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{indentfirst}
+\renewcommand{\baselinestretch}{1.2}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{1cm}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0pt}{30pt}
+\titleformat*{\section}{\fontsize{16pt}{0pt}\selectfont \bfseries \centering}
+\titlespacing*{\subsection}{0pt}{10pt}{30pt}
+\titleformat*{\subsection}{\fontsize{14pt}{0pt}\selectfont \bfseries}
+\titlespacing*{\subsubsection}{0pt}{10pt}{30pt}
+\titleformat*{\subsubsection}{\fontsize{14pt}{0pt}\selectfont \bfseries\itshape}
+\titlespacing*{\paragraph}{0pt}{0pt}{30pt}
+\titleformat*{\paragraph}{\fontsize{16pt}{0pt}\selectfont \itshape}
+\begin{document}
+
+\thispagestyle{empty}
+\begin{titlepage}
+\begin{tikzpicture}[overlay,remember picture]
+\draw[line width=3pt]
+($ (current page.north west)+(3.0cm,-2.0cm)$)
+rectangle
+($ (current page.south east)+(-2.0cm,2.5cm)$);
+\draw[line width=0.5pt]
+($ (current page.north west)+(3.1cm,-2.1cm)$)
+rectangle
+($ (current page.south east)+(-2.1cm,2.6cm)$);
+\end{tikzpicture}
+\begin{center}
+	\fontsize{16pt}{0pt}\selectfont ĐẠI HỌC QUỐC GIA TP-HCM\\
+	\vspace{6pt}\textbf{\fontsize{16pt}{0pt}\selectfont TRƯỜNG ĐẠI HỌC BÁCH KHOA TP-HCM\\}
+	\vspace{0.3cm}
+	\begin{figure}[H]
+		\centering
+\includegraphics[width=7.5cm,height=5.0cm]{C:/Users/DUONG_THAI/Downloads/01_logobachkhoasang}
+	\end{figure}
+	\vspace{0.2cm}
+	\textbf{\fontsize{20pt}{0pt}\selectfont BÁO CÁO BÀI TẬP LỚN\\}
+	\vspace{0.2cm}
+	\textbf{\fontsize{18pt}{0pt}\selectfont MÔN PHƯƠNG PHÁP TÍNH\\}
+	\vspace{0.2cm}
+\fontsize{20pt}{0pt}\selectfont Đề tài:\\
+
+	\fontsize{22pt}{0pt}\selectfont Phương pháp Simpson để tính diện tích \\
+	\fontsize{22pt}{0pt}\selectfont của một miền phẳng\\
+	\vspace{0.5cm}
+	\textbf{\fontsize{20pt}{0pt}\selectfont Giảng viên hướng dẫn: Võ Trần An\\}
+	\vspace{0.2cm}
+	\fontsize{20pt}{0pt}\selectfont Lớp: L13, Nhóm 2\\
+	\vspace{0.5cm}
+	\begin{tabular}{l l}
+		\fontsize{16pt}{0pt}\selectfont Danh Sách Thành Viên \vspace{6pt}\\
+		\fontsize{16pt}{0pt}\selectfont Sinh viên thực hiện & \fontsize{16pt}{0pt}\selectfont Mã số sinh viên\\
+	
+	\end{tabular}
+
+
+\end{center}
+\end{titlepage}
+\cleardoublepage 
+\thispagestyle{empty}
+\section*{LỜI NÓI ĐẦU}
+\fontsize{13pt}{2pt}\selectfont Thân chào Thầy cô và các bạn sinh viên! Đây là báo cáo Bài tập lớn môn học Phương pháp tính do nhóm 02 thực hiện.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Chúng ta thấy rằng hầu hết các bài toán trong toán học như giải các phương trình đại số hay siêu việt, các hệ phương trình tuyến tính hay phi tuyến, các phương trình vi phân thường hay đạo hàm riêng, tính các tích phân,... thường khó giải đúng được, nghĩa là khó tìm kết quả dưới dạng các biểu thức. Một số bài toán có thể giải đúng được nhưng biểu thức kết quả lại cồng kềnh phức tạp khối lượng tính toán rất lớn. Vì những lí do trên, việc giải gần đúng các bài toán là vô cùng cần thiết. Các bài toán trong kĩ thuật thường dựa trên số liệu thực nghiệm và các giả thiết gần đúng. Do vậy việc tìm ra kết quả gần đúng với sai số cho phép là hoàn toàn có ý nghĩa thực tế.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Từ lâu người ta đã nghiên cứu phương pháp tính và đạt nhiều kết quả đáng kể. Tuy nhiên để lời giải đạt được độ chính xác cao, khối lượng tính toán thường rất lớn. Với các phương tiện tính toán thô sơ, nhiều phương pháp tính đã được đề xuất không thể thực hiện được vì khối lượng tính toán quá lớn. Khó khăn trên đã làm phương pháp tính không phát triển được. Ngày nay nhờ máy tính điện tửc người ta đã giải rất nhanh các bài toán khổng lồ, phức tạp, đã kiểm nghiệm được các phương pháp tính cũ và đề ra các phương pháp tính mới. Phương pháp tính nhờ đó phát triển rất mạnh mẽ. Nó là cầu nối giữa toán học và thực tiễn. Nó là môn học không thể thiếu đối với các kỹ sư. Ngoài nhiệm vụ chính của phương pháp tính là tìm các phương pháp giải gần úng các bài toán, nó còn có nhiệm vụ khác như nghiên cứu tính chất nghiệm, nghiên cứu bài toán cực trị, xấp xỉ hàm v.v.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Trong bài báo cáo này, chúng em xin trình bày về một phương pháp để tính gần đúng tích phân, phương pháp Simpson, và ứng dụng phương pháp simpson để tính diện tích miền phẳng.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Trong quá trình thực hiện đề tài, nhóm em đã tìm hiểu, nghiên cứu và chắc hẳn còn nhiều thiếu sót mong cô có thể xem xét, góp ý để đề tài của chúng em có thể hoàn thiện hơn.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Chúng em xin chân thành cảm ơn!
+\cleardoublepage
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+\thispagestyle{empty}
+\cleardoublepage
+\listoffigures
+\addcontentsline{toc}{section}{\numberline{}DANH MỤC HÌNH ẢNH}
+\cleardoublepage
+
+\section*{CHƯƠNG 1: CHƯƠNG MỞ ĐẦU}
+\addcontentsline{toc}{section}{\numberline{} CHƯƠNG 1: CHƯƠNG MỞ ĐẦU}
+\setcounter{section}{1}
+\subsection{Tóm tắt đề tài}
+\begin{itemize}
+\item \fontsize{13pt}{2pt}\selectfont Trình bày về phương pháp simpson tính xấp xỉ một tích phân. \\
+\item \fontsize{13pt}{2pt}\selectfont Trình bày ứng dụng phương pháp simpson để tích diện tích một miền phẳng.
+\end{itemize}
+\subsection{Yêu cầu đề tài}
+\fontsize{13pt}{2pt}\selectfont Cho bản đồ một khu vực. Viết code để tính diện tích
+\newpage
+\section*{CHƯƠNG 2. CƠ SỞ LÝ THUYẾT}
+\addcontentsline{toc}{section}{\numberline{} CHƯƠNG 2. CƠ SỞ LÝ THUYẾT}
+\stepcounter{section}
+\subsection{Tính gần đúng tích phân}
+contents
+\subsection{ Công thức Simpson}
+\newpage
+\section*{CHƯƠNG 3. MATLAB}
+\addcontentsline{toc}{section}{\numberline{} CHƯƠNG 3. MATLAB}
+\stepcounter{section}
+\subsection{ Các hàm Matlab cơ bản được sử dụng trong bài toán}
+\subsection{Sơ đồ khối biểu diễn thuật toán}
+contents
+\subsection{Giải bài toán trên matlab}
+\subsection{Đoạn code matlap hoàn chỉnh}
+\newpage
+\section*{CHƯƠNG 4 : NHẬN XÉT VÀ KẾT LUẬN}
+\addcontentsline{toc}{section}{\numberline{} CHƯƠNG 4 : NHẬN XÉT VÀ KẾT LUẬN}
+\stepcounter{section}
+\subsection{  Nhận xét}
+\subsection{Kết luận}
+\newpage
+\end{document}
