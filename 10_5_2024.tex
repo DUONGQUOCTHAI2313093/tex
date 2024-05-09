@@ -1,0 +1,269 @@
+\documentclass[14pt,a4paper]{article}
+\usepackage[top=2cm,bottom=2cm,inner=2.5cm,outer=2cm]{geometry}
+\usepackage[utf8]{vietnam}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{indentfirst}
+\renewcommand{\baselinestretch}{1.2}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{1cm}
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0pt}{20pt}
+\titleformat*{\section}{\fontsize{16pt}{0pt}\selectfont \bfseries \centering}
+\titlespacing*{\subsection}{0pt}{10pt}{20pt}
+\titleformat*{\subsection}{\fontsize{14pt}{0pt}\selectfont \bfseries}
+\titlespacing*{\subsubsection}{0pt}{10pt}{20pt}
+\titleformat*{\subsubsection}{\fontsize{14pt}{0pt}\selectfont \bfseries\itshape}
+\titlespacing*{\paragraph}{0pt}{0pt}{20pt}
+\titleformat*{\paragraph}{\fontsize{16pt}{0pt}\selectfont \itshape}
+\renewcommand{\figurename}{\fontsize{12pt}{0pt}\selectionfont \bfseries Hình }
+\renewcommand{\thefigure}{\thesection. \arabic{figure} \,}
+\usepackage{caption}
+\captionsetup[figure]{labelsep=space}
+\usepackage{amsmath}
+\begin{document}
+
+\thispagestyle{empty}
+\begin{titlepage}
+\begin{tikzpicture}[overlay,remember picture]
+\draw[line width=3pt]
+($ (current page.north west)+(3.0cm,-2.0cm)$)
+rectangle
+($ (current page.south east)+(-2.0cm,2.5cm)$);
+\draw[line width=0.5pt]
+($ (current page.north west)+(3.1cm,-2.1cm)$)
+rectangle
+($ (current page.south east)+(-2.1cm,2.6cm)$);
+\end{tikzpicture}
+\begin{center}
+	\fontsize{16pt}{0pt}\selectfont ĐẠI HỌC QUỐC GIA TP-HCM\\
+	\vspace{6pt}\textbf{\fontsize{16pt}{0pt}\selectfont TRƯỜNG ĐẠI HỌC BÁCH KHOA TP-HCM\\}
+	\vspace{0.3cm}
+	\begin{figure}[H]
+		\centering
+     \includegraphics[width=7.5cm,height=5.0cm]{C:/Users/DUONG_THAI/Downloads/01_logobachkhoasang}
+	\end{figure}
+	\vspace{0.2cm}
+	\textbf{\fontsize{20pt}{0pt}\selectfont BÁO CÁO BÀI TẬP LỚN\\}
+	\vspace{0.2cm}
+	\textbf{\fontsize{18pt}{0pt}\selectfont MÔN PHƯƠNG PHÁP TÍNH\\}
+	\vspace{0.2cm}
+\fontsize{20pt}{0pt}\selectfont Đề tài:\\
+
+	\fontsize{22pt}{0pt}\selectfont Phương pháp Simpson để tính diện tích \\
+	\fontsize{22pt}{0pt}\selectfont của một miền phẳng\\
+	\vspace{0.5cm}
+	\textbf{\fontsize{20pt}{0pt}\selectfont Giảng viên hướng dẫn: Võ Trần An\\}
+	\vspace{0.2cm}
+	\fontsize{20pt}{0pt}\selectfont Lớp: L13, Nhóm 2\\
+	\vspace{0.5cm}
+	\begin{tabular}{l l}
+		\fontsize{16pt}{0pt}\selectfont Danh Sách Thành Viên \vspace{6pt}\\
+		\fontsize{16pt}{0pt}\selectfont Sinh viên thực hiện & \fontsize{16pt}{0pt}\selectfont Mã số sinh viên\\
+	
+	\end{tabular}
+
+
+\end{center}
+\end{titlepage}
+\cleardoublepage 
+\thispagestyle{empty}
+\section*{LỜI NÓI ĐẦU}
+\fontsize{13pt}{2pt}\selectfont Thân chào Thầy cô và các bạn sinh viên! Đây là báo cáo Bài tập lớn môn học Phương pháp tính do nhóm 02 thực hiện.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Chúng ta thấy rằng hầu hết các bài toán trong toán học như giải các phương trình đại số hay siêu việt, các hệ phương trình tuyến tính hay phi tuyến, các phương trình vi phân thường hay đạo hàm riêng, tính các tích phân,... thường khó giải đúng được, nghĩa là khó tìm kết quả dưới dạng các biểu thức. Một số bài toán có thể giải đúng được nhưng biểu thức kết quả lại cồng kềnh phức tạp khối lượng tính toán rất lớn. Vì những lí do trên, việc giải gần đúng các bài toán là vô cùng cần thiết. Các bài toán trong kĩ thuật thường dựa trên số liệu thực nghiệm và các giả thiết gần đúng. Do vậy việc tìm ra kết quả gần đúng với sai số cho phép là hoàn toàn có ý nghĩa thực tế.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Từ lâu người ta đã nghiên cứu phương pháp tính và đạt nhiều kết quả đáng kể. Tuy nhiên để lời giải đạt được độ chính xác cao, khối lượng tính toán thường rất lớn. Với các phương tiện tính toán thô sơ, nhiều phương pháp tính đã được đề xuất không thể thực hiện được vì khối lượng tính toán quá lớn. Khó khăn trên đã làm phương pháp tính không phát triển được. Ngày nay nhờ máy tính điện tửc người ta đã giải rất nhanh các bài toán khổng lồ, phức tạp, đã kiểm nghiệm được các phương pháp tính cũ và đề ra các phương pháp tính mới. Phương pháp tính nhờ đó phát triển rất mạnh mẽ. Nó là cầu nối giữa toán học và thực tiễn. Nó là môn học không thể thiếu đối với các kỹ sư. Ngoài nhiệm vụ chính của phương pháp tính là tìm các phương pháp giải gần úng các bài toán, nó còn có nhiệm vụ khác như nghiên cứu tính chất nghiệm, nghiên cứu bài toán cực trị, xấp xỉ hàm v.v.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Trong bài báo cáo này, chúng em xin trình bày về một phương pháp để tính gần đúng tích phân, phương pháp Simpson, và ứng dụng phương pháp simpson để tính diện tích miền phẳng.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Trong quá trình thực hiện đề tài, nhóm em đã tìm hiểu, nghiên cứu và chắc hẳn còn nhiều thiếu sót mong cô có thể xem xét, góp ý để đề tài của chúng em có thể hoàn thiện hơn.\\
+\hspace*{1cm}\fontsize{13pt}{2pt}\selectfont Chúng em xin chân thành cảm ơn!
+\cleardoublepage
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\tableofcontents
+\thispagestyle{empty}
+\cleardoublepage
+\listoffigures
+\addcontentsline{toc}{section}{\numberline{}DANH MỤC HÌNH ẢNH}
+\cleardoublepage
+
+\section*{CHƯƠNG 1: CHƯƠNG MỞ ĐẦU}
+\addcontentsline{toc}{section}{\numberline{} CHƯƠNG 1: CHƯƠNG MỞ ĐẦU}
+\setcounter{section}{1}
+\subsection{Tóm tắt đề tài}
+\begin{itemize}
+\item \fontsize{13pt}{2pt}\selectfont Trình bày về phương pháp simpson tính xấp xỉ một tích phân. \\
+\item \fontsize{13pt}{2pt}\selectfont Trình bày ứng dụng phương pháp simpson để tích diện tích một miền phẳng: Nghĩa là sử dụng công thức Simpson để đánh giá và tính giá trị gần đúng tích phân xác định trong tính diện tích của một mặt phẳng khi không thể tính toán chính xác bằng các phương pháp tích phân truyền thống . \\
+\end{itemize}
+\subsection{Yêu cầu đề tài}
+\fontsize{13pt}{2pt}\selectfont           Yêu cầu nhóm phải tính chính xác diện tích của  một miền phẳng ( cụ thể là bản đồ cảu một khu vực) bằng cách sử dụng công thức Simpson .Cho bản đồ một khu vực. Viết code để tính diện tích.\\
+\newpage
+\section*{CHƯƠNG 2. CƠ SỞ LÝ THUYẾT}
+\addcontentsline{toc}{section}{\numberline{} CHƯƠNG 2. CƠ SỞ LÝ THUYẾT}
+\stepcounter{section}
+\subsection{Tính gần đúng tích phân}
+\fontsize{13pt}{2pt}\selectfont - Sử dụng gần đúng tích phân để tính diện tích dưới f(x) khi hàm liên tục trên [a,b] và có nguyên hàm F(x) , công thước Newton-Lepnit: \\
+\hspace*{1cm} \fontsize{13pt}{2pt}\selectfont Cần tính I=${\displaystyle \int_{a}^{b}f(x)\,dx}$\\
+\vspace {0.3cm}\hspace*{1cm} \fontsize{13pt}{2pt}\selectfont I=${\displaystyle \int_{a}^{b}f(x)\,dx}$ = F(b) -F(a)\\
+
+\fontsize{13pt}{2pt}\selectfont - Trường hợp : \\
+\begin{itemize}
+\item  \fontsize{13pt}{2pt}\selectfont 	f(x) chỉ được cho ở dạng bảng  \\
+\item \fontsize{13pt}{2pt}\selectfont 	Hoặc f(x) đã biết nhưng tính toán sẽ rất phức tạp .\\
+\end{itemize}
+ $\to$	Thay vì tính chính xác thì tính gần đúng sẽ chính xác và hiệu quả hơn.\\
+\hspace*{1cm} Tính gần đúng chúng ta có rất nhiều phương pháp  tính khác nhâu nhưng đây là đề tài về phương pháp Simpson nên chúng ta chỉ đề cập đến phương pháp Simpson .\\
+\subsection{ Công thức Simpson}
+\subsubsection {Bài toán}
+ \vspace{6pt }Cho bảng giá trị
+\begin{tabular}{c|c|c|c|c}
+	
+	x &  ${\displaystyle x_0}$ &  ${\displaystyle x_1}$ & ... &  ${\displaystyle x_n}$ \\
+	\hline
+	${\displaystyle y=f(x)}$ &  ${\displaystyle y_0}$ &  ${\displaystyle y_1}$ & ... &  ${\displaystyle y_n}$ \\
+	
+\end{tabular} \\ 
+\hspace*{30pt} Tính gần đúng: ${\displaystyle I=\int_{a}^{b}f(x)\,dx ,a=x_0 ,b=x_n}$ \\
+\subsubsection{Xây dựng công thức }
+
+\begin{figure}[H]
+	\centering
+	
+	\includegraphics{C:/Users/DUONG_THAI/Downloads/Picture1.png}
+	\caption[Mô tả đồ thị f(x)]{Mô tả đồ thị f(x)}
+	\label{hinh21}
+\end{figure}
+ 	   Phân hoạch [a,b] thành 2n đoạn con bằng nhau ${\displaystyle a=x_0<x_1<…<x_{2n}=b}$ như hình trên\\
+ 	   \vspace{6pt}
+ 	   \hspace*{30pt}Ta có : ${\displaystyle h= x_{i+1} - x_i = \frac{b-a}{2n}}$\\ 
+ 	   
+ 	   \hspace*{30pt}${\displaystyle x_i=x_0+ih ,i=0,1,…,2n }$ \\
+ 	   \hspace*{30pt} Lúc đó tính tích phân ${\displaystyle I= \int_{a}^{b}f(x)\,dx =\int_{x_0}^{x_2}f(x)\,dx +\int_{x_2}^{x_4}f(x)\,dx+ ... + \int_{x_{2n}}^{x_{2n+2}}f(x)\,dx}$ \\
+ 	   \hspace*{30pt} Xét đoạn kép ${\displaystyle  [x_{2i}, x_{2i+2}]}$, Xấp xỉ f(x) bởi đa thức nội suy bậc 2 ${\displaystyle P_2 (x): }$ \\ \vspace{9pt}
+\begin{figure}[H]
+	\centering
+	\includegraphics{C:/Users/DUONG_THAI/Downloads/Picture2.22.png}
+	\caption[ Hình minh họa đoạn kép ${\displaystyle  [x_{2i}, x_{2i+2}]}$, Xấp xỉ f(x) bởi đa thức nội suy bậc 2 ${\displaystyle P_2 (x): }$]{ Hình minh họa đoạn kép ${\displaystyle  [x_{2i}, x_{2i+2}]}$, Xấp xỉ f(x) bởi đa thức nội suy bậc 2 ${\displaystyle P_2 (x): }$}
+	\label{hinh22}
+\end{figure} 	     
+ 	  \vspace{9pt} \hspace*{30pt} ${\displaystyle I_i= \int_{x_{2i}}^{x_{2i+2}}f(x)\,dx \approx \int_{x_{2i}}^{x_{2i+2}}P_x(x)\,dx}$ \\ 
+ 	 \vspace*{9pt} \hspace*{30pt} Đặt ${\displaystyle x= x_{2i} +th , dx= hdt ; x=x_{2i} \Rightarrow t=0 ; x= x_{2i+2} \Rightarrow t= 2 }$ \\ 
+ 	 \vspace{9pt} \hspace*{30pt} Ta được: \,  ${\displaystyle   I_i \approx h \int_{0}^{2}[y_{2i} +t\Delta y +\frac{t(t-1)}{2} \Delta^2y_{2i}]\,dt}$ \\
+ 	 \vspace{9pt} \hspace*{30pt}  ${\displaystyle I_i  =h[y_{2i} t+  \frac{t^2}{2}  \Delta y + \frac{1}{2} ( \frac {t^3}{3}-\frac{t^2}{2}  ) \Delta ^2 y_{2i} ]|_{t=0}^{t_2=2}  =   \frac{h}{3}(y_{2i}+4y_{2i+1}+y_{2i+2} ) }$\\
+ 	 \vspace{9pt} \hspace*{30pt} -	Công thức Simpson toàn phần \\
+ 	 \vspace{9pt} \hspace*{30pt} ${\displaystyle I=\int_{a}^{b}f(x)\,dx \approx \int_{x_0}^{x_2}f(x)\,dx +\int_{x_2}^{x_4}f(x)\,dx+ ... + \int_{x_{2n-2}}^{x_{2n}}f(x)\,dx}$ \\ 
+ 	 \vspace{9pt} \hspace*{35pt}   ${\displaystyle	=\frac{h}{3}(y_0+4y_1+y_2) +\frac{h}{3}(y_2+4y_3+y_4) + ...+ \frac{h}{3}(y_{2n-2}+4y_{2n-1}+y_{2n}) }$\\
+ 	 \vspace{9pt} \hspace*{35pt}   ${\displaystyle= \frac{h}{3}[(y_0+y_{2n})+4(y_1+y_3 +...+y_{2n-1})+2(y_2+y_4 +...+y_{2n-2})]}$
+ \subsubsection{Ước lượng sai số }
+ Người ta đã chứng minh công thức ước lượng sai số như sau:\\
+ \vspace{9pt} \hspace*{35pt}   ${\displaystyle R_2(2n) \leq \frac{b-a}{180}M_4 h^4}$ \, ,trong đó ${\displaystyle  M_4 = \max_{[a,b]}|f^{(4)}(x)|}$
+ \subsubsection{Ví dụ về áp dụng công thức :}
+\vspace{9pt}Tính gần đúng tích phân ${\displaystyle \int_{0}^{1}\frac{dx}{x+1}}$ với n=5 \\
+\hspace*{30pt}Giải cụ thể như sau : \\
+\hspace*{30pt}Đối với công thức Simpson với n=5 thì ta tiến hành chia đoạn thành 5x2=10 đoạn bằng nhau  \\
+\hspace*{30pt} ${\displaystyle h=\frac{b-a}{2n} = \frac{1-0}{10} = 0.1 \,\,\,\,\, ; f(x)=\frac{1}{x+1}\, ,x_0= 0\, ,  x_k= \frac{k}{10}}$\\ 
+\hspace*{30pt} Ta lập được bảng giá trị của ${\displaystyle f(x) \,}$ trên đoạn [0,1] được chia làm 10 phần bằng nhau như sau : \vspace{6pt}\\
+\begin{tabular}{ c|c|c|c|c|c|c|c|c|c|c|c}
+
+	${\displaystyle x_i}$&${\displaystyle x_0}$& ${\displaystyle x_1}$ & ${\displaystyle x_2}$ &${\displaystyle x_3}$ &${\displaystyle x_4 }$&${\displaystyle x_5}$ &${\displaystyle x_6}$ &${\displaystyle x_7 }$&${\displaystyle x_8}$ &${\displaystyle x_9}$ &${\displaystyle x_{10} }$ \vspace{6pt}\\
+	\hline 
+	${\displaystyle f(x)}$& 1 &${\displaystyle \frac{10}{11}}$ &${\displaystyle \frac{5}{6} }$&${\displaystyle \frac{10}{13}}$ &${\displaystyle \frac{5}{7}}$ &${\displaystyle \frac{2}{3} }$ &${\displaystyle \frac{5}{8}}$ &${\displaystyle \frac{10}{17} }$&${\displaystyle \frac{5}{9}}$ &${\displaystyle \frac{10}{19}}$ &${\displaystyle\frac{1}{2} }$ \\
+
+\end{tabular} \vspace{9pt} \\
+\hspace*{30pt} Vậy: ${\displaystyle I \approx \frac{h}{3}(y_0 +4y_1+ 2y_2+4y_3+2y_4+4y_5+2y_6+4y_7+2y_8+4y_9+y_{10})}$\\
+\hspace*{30pt}${\displaystyle I \approx \frac{h}{3} \sum_{k=0}^{n-1}(y_{2k}+4y_{2k+1}+y_{2k+2}) = \frac{1}{30} \sum_{k=0}^{4}(\frac{10}{10+2k}+4\frac{10}{11+2k}+\frac{10}{12+2k}) =0.6931}$
+\newpage
+\section*{CHƯƠNG 3. MATLAB}
+\addcontentsline{toc}{section}{\numberline{} CHƯƠNG 3. MATLAB}
+\stepcounter{section}
+\subsection { Các hàm Matlab cơ bản được sử dụng trong bài toán}
+\subsection{Sơ đồ khối biểu diễn thuật toán}
+contents
+\subsection{Giải bài toán trên matlab}
+\subsubsection{Bài toán}
+Xác định gần đúng diện tích của tỉnh Đắk Lắk bằng phương pháp simpson. \vspace{9pt}\\
+\begin{figure}[H]
+	\centering
+	\setcounter{figure}{0}
+	\includegraphics[width=6in,height=5in]{C:/Users/DUONG_THAI/Downloads/daklak.png}
+	\caption[Bản đồ Đắk Lắk ]{Bản đồ Đắk Lắk}
+	\label{hinh31}
+\end{figure} 
+\subsubsection{Hướng giải bài toán}
+Xác định các điểm thông qua hệ tọa độ địa lí, sau đó chuyển từ hệ tọa độ địa lí sang hệ tọa độ Oxy. \vspace{6pt}\\
+\hspace*{30pt}Áp bản đồ vào đồ thị Oxy. Chia bản đồ thành 2 nửa.\vspace{6pt}\\
+\hspace*{30pt}Từ 2 nửa bản đồ, tiến hành chia nhỏ thành các phần khác nhau, tiến hành lấy các giá trị x và y để làm số liệu. \vspace{6pt}\\
+\hspace*{30pt} Sau khi có các số liệu, tiến hành áp dụng các phương pháp nội suy đã học để ước lượng hàm số: tại đây nhóm áp dụng phương pháp bình phương cực tiểu để nội suy hàm số.\vspace{6pt}\\
+\hspace*{30pt}Khi đã ước lượng được hàm số, áp dụng các công thức tính tích phân để tính diện tích bên dưới hàm số, nhóm lựa chọn phương pháp simpson.\vspace{6pt}\\
+\hspace*{30pt}Tiến hành trừ các giá trị diện tích cho nhau để ra phần diện tích cần tìm.\vspace{6pt}\\
+\subsubsection{Số liệu}
+Thu thập số liệu thông qua ứng dụng google map.\vspace{6pt}\\
+\hspace*{30pt}Tiến hành lấy số liệu bằng cách chấm các điểm nút tại đường biên của tỉnh Đắk Lắk.\vspace{6pt}\\
+\hspace*{30pt}Số liệu hiện thị trên google map dưới dạng 1 cặp tọa độ với 2 loại tọa độ là tọa độ độ - phút – giây ( ${\displaystyle 37^{\circ}25'19.07"N, 122^{\circ}05'06.24"W }$) và tọa độ thập phân ( ${\displaystyle 37.7^{\circ}, -122.2^{\circ} }$), nên cần chuyển sang hệ tọa độ Gauss (Oxy).\vspace{6pt}\\
+\begin{figure}[H]
+	\centering
+	
+	\includegraphics[width=6in,height=3.5in]{C:/Users/DUONG_THAI/Downloads/solieu.png}
+	\caption[Số liệu các điểm thu thập. ]{Số liệu các điểm thu thập.}
+	\label{hinh32}
+\end{figure} \vspace{6pt}
+Do áp dụng nội suy bình phương cực tiêu, dạng y = A + Bx, nên khi số liệu thu thập được lấy theo các cụm số liệu có phân bố gần giống dạng tuyến tính nhất.\vspace{6pt}\\
+\hspace*{30pt}Sau khi thi thập số liệu, áp dụng nội suy bình phương cực tiểu để nội suy ra các phương trình cho các cụm số liệu. Tiếp theo dùng các phương trình đã nội suy để tính giá trị diện tích.\vspace{6pt}\\
+\subsection{Chương trình matlab} 
+\subsubsection{Bình phương cực tiểu}
+\begin{itemize}
+	\item{Function matlab}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=6in,height=3in]{C:/Users/DUONG_THAI/Downloads/hinh3.3.png}
+		\caption[Đoạn code 1 ]{Đoạn code 1}
+		\label{hinh33}
+	\end{figure} \vspace{6pt}
+    \item{Kết quả chạy Function \vspace{6pt} \\}
+    Dựa vào số liệu thu thập, áp dụng nội suy bình phương cực tiểu để suy ra các phương trình cho các cụm số liệu:\\
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=1.25in,height=1in]{C:/Users/DUONG_THAI/Downloads/hinh3.4.png}
+    	\caption[cụm số liệu]{cụm số liệu}
+    	\label{hinh34}
+    \end{figure} \vspace{6pt} 
+    -Nhập số liệu tại command window như sau:\vspace{6pt} \\
+    BPCT([1432916.52581594 1440311.75970801 1452329.87673011 1465328.89333048 1471226.40557957],[389420.029324822 390715.200170766 395003.860838428 \\400114.594272502 402646.601773432]) \vspace{6pt}\\
+    \hspace*{30pt}Function sẽ trả về hàm nội suy: ${\displaystyle y=0.35379x\,+\,(-118270.2256),}$\\  
+    \hspace*{90pt} Với  ${\displaystyle 1432916.52581594 \leq x \leq 1471226.40557957.}$ \vspace{6pt}\\
+    \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=5in,height=3in]{C:/Users/DUONG_THAI/Downloads/hinh3.5.png}
+    	\caption[Biểu đồ biểu diễn phương trình nội suy.]{Biểu đồ biểu diễn phương trình nội suy.}
+    	\label{hinh35}
+    \end{figure} \vspace{6pt} 
+    \hspace*{30pt}So sánh với nội suy từ Excel thì có thể kết luận Function thực hiện trên matlab là chính xác.\vspace{6pt}\\
+     \hspace*{30pt}Thực hiện tương tự cho các cụm số liệu khác, ta nội suy được các phương trình sau:\vspace{6pt}\\
+    ${\displaystyle Y=4.4274x+(-6118471.7612)\,\,\,, 1471226.40557957 \leq x \leq 1483723.08053796.}$\vspace{6pt}\\
+    ${\displaystyle Y=-2.8765x+\,4726416.4764\,\,\,, 1483723.08053796 \leq x \leq 1474906.9197267.}$\vspace{6pt}\\
+    ${\displaystyle Y=-1.1537x+2176091.0765\,\,\,, 1474906.9197267 \leq x \leq 1417314.94694278. }$\vspace{6pt}\\
+    ${\displaystyle Y=-0.08521x+672162.431 \,\,\,, 1417314.94694278 \leq x \leq 1402683.82221727.}$ \vspace{6pt}\\
+    ${\displaystyle Y=-0.50171x+1107376.2032\,\,\,,  1432916.52581594 \leq x\leq 1415361.61937163.}$\vspace{6pt}\\
+    ${\displaystyle Y=0.01678x+391883.1039\,\,\,,  1415361.61937163 \leq x\leq 1415004.41157219.*}$\vspace{6pt}\\
+    ${\displaystyle Y=-0.35596x+933046.1157\,\,\,, 1415004.41157219 \leq x\leq 1346875.70431328.}$\vspace{6pt}\\
+    ${\displaystyle Y=2.9169x+(-3463717.2096)\,\,\,, 1346875.70431328 \leq x\leq 1357836.01477641.}$\vspace{6pt}\\
+    ${\displaystyle Y=0.54392x+(-225670.7433)\,\,\,, 1357836.01477641 \leq x\leq 1383033.07015041.}$\vspace{6pt}\\
+    ${\displaystyle Y=-1.6746x+2845057.0282\,\,\,, 1383033.07015041 \leq x\leq 1377188.41776772.}$\vspace{6pt}\\
+    ${\displaystyle Y=0.23985x+208381.3997\,\,\,, 1377188.41776772 \leq x\leq 1403860.17471794.}$\vspace{6pt}\\
+    ${\displaystyle Y=-2.8921x+4607861.8892\,\,\,, 1403890.92702845 \leq x\leq 1402683.82221727.}$\vspace{6pt}\\
+    \hspace*{30pt}Tại các phương trình có đánh dấu "*", do hàm nội suy có sự sai khác quá lớn so với các giá trị điểm nút nên gây ra sai số cho quá trình tính toán.\vspace{6pt}\\
+     \begin{figure}[H]
+    	\centering
+    	\includegraphics[width=5in,height=3in]{C:/Users/DUONG_THAI/Downloads/hinh3.6.png}
+    	\caption[Biểu đồ biểu diễn phương trình nội suy lỗi.]{Biểu đồ biểu diễn phương trình nội suy lỗi.}
+    	\label{hinh36}
+    \end{figure} \vspace{6pt} 
+\end{itemize}
+\newpage
+\section*{CHƯƠNG 4 : NHẬN XÉT VÀ KẾT LUẬN}
+\addcontentsline{toc}{section}{\numberline{} CHƯƠNG 4 : NHẬN XÉT VÀ KẾT LUẬN}
+\stepcounter{section}
+\subsection{  Nhận xét}
+\subsection{Kết luận}
+\newpage
+\end{document}
